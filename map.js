@@ -113,6 +113,10 @@ class App {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
 
+        L.marker([latitude, longitude]).addTo(this.map)
+            .bindPopup('You are here')
+            .openPopup();
+
         //event listener on map-"on"
         this.map.on('click', this._showForm.bind(this));
 
