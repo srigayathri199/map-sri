@@ -114,7 +114,13 @@ class App {
         }).addTo(this.map);
 
         L.marker([latitude, longitude]).addTo(this.map)
-            .bindPopup('You are here')
+            .bindPopup(L.popup({
+                maxWidth: 500,
+                minWidth: 100,
+                autoClose: false,
+                className: `leaflet-popup`,
+                closeOnClick: false
+            })).setPopupContent(`you are here`)
             .openPopup();
 
         //event listener on map-"on"
@@ -289,7 +295,6 @@ class App {
         });
     }
 
-
     //first public  method in app class
     reset() {
         localStorage.removeItem('workouts');
@@ -299,9 +304,6 @@ class App {
     }
 }
 const app = new App();
-
-
-
 
 
 //when we convert objs to strings and vice versa using stringify and parse, the strings/ob loose their prototypes, thats y "click" fn shows error
