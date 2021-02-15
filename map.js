@@ -87,7 +87,6 @@ class App {
         inputType.addEventListener('change', this._toggleElevationField);
         containerWorkouts.addEventListener('click', this._movetopopup.bind(this));
         this._cross();
-
     }
 
     _getPosition() {
@@ -126,16 +125,21 @@ class App {
             })).setPopupContent(`you are here`)
             .openPopup();
 
+        var scale = L.control.scale(); // Creating scale control
+        scale.addTo(this.map);
+
+
         // var btn = document.createElement('div');
         // btn.className = 'leaflet-bar' + ' ' + 'leaflet-control';
         // var link = document.createElement('button');
         // link.className = 'addwkout';
-        // link.textContent = 'Add Workout';
+        // link.textContent = 'Your Workouts';
+        // link.setAttribute('href', '#');
         // btn.appendChild(link);
         // var left = document.querySelector('.leaflet-right');
         // left.appendChild(btn);
-        // btn.style.marginRight = '26px';
-        // btn.style.marginTop = '15px';
+        // btn.style.marginRight = '10px';
+        // btn.style.marginTop = '10px';
         // link.style.borderTop = '0.8px';
         // link.style.borderBottom = '0.8px'
         // link.style.cursor = 'pointer';
@@ -145,7 +149,6 @@ class App {
         // link.style.borderRadius = '5px';
         // link.style.width = '8rem';
         // link.style.fontSize = '15px';
-        //  console.log(left);
 
 
         //event listener on map-"on"
@@ -300,7 +303,7 @@ class App {
         console.log(workouts);
         sidebar.classList.toggle('hidden')
             // console.log(this.mapzoomlevel);
-        this.map.setView(workouts.coords, this.mapzoomlevel, {
+        this.map.setView(workouts.coords, 15, {
             animate: true,
             pan: {
                 duration: 1,
