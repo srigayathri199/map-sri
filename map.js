@@ -153,6 +153,7 @@ class App {
 
         //event listener on map-"on"
         this.map.on('click', this._showForm.bind(this));
+        this.modal();
 
         //workouts stored in loacl storage should have markers,popup when the page is loaded at first and also the map is loaded, so we should add markers here
         this.activities.forEach(work => {
@@ -340,6 +341,12 @@ class App {
         //reload
         location.reload();
 
+    }
+
+    modal() {
+        window.addEventListener('load', function() {
+            alert('Welcome!\n Click on the desired location on the map to add a new workout.')
+        });
     }
 }
 const app = new App();
