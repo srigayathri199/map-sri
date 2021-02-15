@@ -2,6 +2,7 @@
 
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
+const sidebar = document.querySelector('.sidebar');
 const inputType = document.querySelector('.form__input--type');
 const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
@@ -85,6 +86,8 @@ class App {
             this._newWorkout.bind(this));
         inputType.addEventListener('change', this._toggleElevationField);
         containerWorkouts.addEventListener('click', this._movetopopup.bind(this));
+        this._cross();
+
     }
 
     _getPosition() {
@@ -123,6 +126,28 @@ class App {
             })).setPopupContent(`you are here`)
             .openPopup();
 
+        // var btn = document.createElement('div');
+        // btn.className = 'leaflet-bar' + ' ' + 'leaflet-control';
+        // var link = document.createElement('button');
+        // link.className = 'addwkout';
+        // link.textContent = 'Add Workout';
+        // btn.appendChild(link);
+        // var left = document.querySelector('.leaflet-right');
+        // left.appendChild(btn);
+        // btn.style.marginRight = '26px';
+        // btn.style.marginTop = '15px';
+        // link.style.borderTop = '0.8px';
+        // link.style.borderBottom = '0.8px'
+        // link.style.cursor = 'pointer';
+        // link.style.fontWeight = 'bold'
+        // link.style.backgroundColor = 'white';
+        // link.style.padding = '6px';
+        // link.style.borderRadius = '5px';
+        // link.style.width = '8rem';
+        // link.style.fontSize = '15px';
+        //  console.log(left);
+
+
         //event listener on map-"on"
         this.map.on('click', this._showForm.bind(this));
 
@@ -135,9 +160,19 @@ class App {
         // console.log(mape.latlng);
         this.mapevent = mape;
         // console.log(mapevent);
+        sidebar.classList.remove('hidden');
         form.classList.remove('hidden');
+
         inputDistance.focus();
     };
+
+    _cross() {
+        document.querySelector('.cross').addEventListener('click', function(e) {
+            sidebar.classList.toggle('hidden');
+
+        })
+    }
+
     _toggleElevationField() {
         inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
         inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
@@ -263,7 +298,8 @@ class App {
         if (!movel) return;
         const workouts = this.activities.find(work => work.id === movel.dataset.id);
         console.log(workouts);
-        // console.log(this.mapzoomlevel);
+        sidebar.classList.toggle('hidden')
+            // console.log(this.mapzoomlevel);
         this.map.setView(workouts.coords, this.mapzoomlevel, {
             animate: true,
             pan: {

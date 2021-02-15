@@ -27,7 +27,8 @@ body {
     height: 100vh;
     overscroll-behavior-y: none;
     background-color: #fff;
-    padding: 2.5rem;
+    padding: 0;
+    margin: 0;
     display: flex;
 }
 
@@ -43,11 +44,19 @@ a:visited {
 /* SIDEBAR */
 
 .sidebar {
+    display: flex;
     flex-basis: 50rem;
     background-color: var(--color-dark--1);
     padding: 3rem 5rem 4rem 5rem;
-    display: flex;
     flex-direction: column;
+}
+
+.cross {
+    position: absolute;
+    left: 80%;
+    font-size: 20px;
+    font-weight: bold;
+    top: 6.5%;
 }
 
 .logo {
@@ -115,6 +124,10 @@ a:visited {
     font-weight: 800;
 }
 
+.sidebar.hidden {
+    display: none;
+}
+
 .form {
     background-color: var(--color-dark--2);
     border-radius: 5px;
@@ -171,24 +184,6 @@ a:visited {
     display: none;
 }
 
-.copyright {
-    margin-top: auto;
-    font-size: 1.3rem;
-    text-align: center;
-    color: var(--color-light--1);
-}
-
-.twitter-link:link,
-.twitter-link:visited {
-    color: var(--color-light--1);
-    transition: all 0.2s;
-}
-
-.twitter-link:hover,
-.twitter-link:active {
-    color: var(--color-light--2);
-}
-
 
 /* MAP */
 
@@ -222,4 +217,26 @@ a:visited {
 
 .cycling-popup .leaflet-popup-content-wrapper {
     border-left: 5px solid var(--color-brand--1);
+}
+
+@media (max-width:500px) {
+    .workout {
+        background-color: var(--color-dark--2);
+        border-radius: 5px;
+        padding: 1.5rem 2.25rem;
+        margin-bottom: 1.75rem;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem 1.5rem;
+    }
+    .form {
+        padding: 1.5rem 2.75rem;
+        margin-bottom: 1.75rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem 2.5rem;
+        /* Match height and activity boxes */
+        height: auto;
+    }
 }
